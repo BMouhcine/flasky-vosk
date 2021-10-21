@@ -61,11 +61,10 @@ def get_media_file():
 		param.save(filename)
 		jsonFilePath = hello(filename)
 		json_file_2_send = send_file(jsonFilePath, as_attachment=True)
-		os.remove(jsonFilePath)
+		#os.remove(jsonFilePath)
 		os.remove(filename)
 		return json_file_2_send
-		
-	return "0"
+	return "Nothing processed"
 
 def hello(filename):
   process = subprocess.Popen(['ffmpeg', '-loglevel', 'quiet', '-i',
@@ -92,12 +91,12 @@ def hello(filename):
       else:
       	continue
           #print(rec.PartialResult())
-  
+
   csvFilePath = 'ts{}.csv'.format(dtime_formatted_win_OS)
   jsonFilePath = 'ts{}.json'.format(dtime_formatted_win_OS)
   csv_to_json(csvFilePath, jsonFilePath)
   return jsonFilePath
-  
+
 
 if __name__ == "__main__":
   app.run()
